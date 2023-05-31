@@ -10,7 +10,7 @@ export const ArticlesList = () => {
 
   useEffect(() => {
     fetchAllArticles().then(({ articles }) => {
-      setArticlesList([...articles]);
+      setArticlesList(articles);
       setIsLoading(false);
     });
   }, []);
@@ -22,9 +22,7 @@ export const ArticlesList = () => {
       <ul className="articles-list">
         {articlesList.map((article) => (
           <li key={article.article_id}>
-            <Link to={`/articles/${article.article_id}`}>
-              <ArticleCard article={article} />
-            </Link>
+            <ArticleCard article={article} />
           </li>
         ))}
       </ul>
