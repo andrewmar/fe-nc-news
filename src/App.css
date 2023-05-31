@@ -71,7 +71,7 @@
 
 .article-info {
   font-size: 14px;
-  color: #666;
+  color: #000000;
   margin-bottom: 10px;
 }
 
@@ -92,4 +92,61 @@
 .user-login-container {
   position: relative;
   top: 100px;
+}
+
+.single-article {
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 10px;
+}
+
+.single-article h2 {
+  margin: 10px 10px;
+}
+
+.single-article p {
+  margin-bottom: auto;
+}
+
+.article-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+}
+
+.article-info p.author {
+  margin-bottom: 10px;
+}
+
+.vote-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vote-buttons p {
+  margin: 10px 10px;
+}
+
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comments {
+  margin-bottom: 10px;
+}
+
+.add-comment-button {
+  margin-top: 10px;
+}
+.single-article img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 25px;
 }
