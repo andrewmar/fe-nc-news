@@ -4,3 +4,92 @@
   padding: 2rem;
   text-align: center;
 }
+
+.navigation {
+  background: #f2f2f2;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  margin-right: 10px;
+}
+
+.nav-link:hover {
+  color: #777;
+}
+
+.user-info {
+  color: #333;
+  margin-left: auto;
+}
+.articles-list-container {
+  margin: 20px;
+}
+
+.articles-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.article-card {
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 4px;
+  height: 25vh;
+}
+.article-card:hover {
+  background-color: #ebebeb;
+}
+
+.article-topic {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.topic-prefix {
+  color: #888;
+}
+
+.article-title {
+  margin-top: 0;
+}
+
+.article-info {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.author-name {
+  font-weight: bold;
+}
+
+.comment-count {
+  margin-left: 10px;
+}
+
+.spinner {
+  width: "100px";
+  margin: "auto";
+  display: "block";
+}
+
+.user-login-container {
+  position: relative;
+  top: 100px;
+}
