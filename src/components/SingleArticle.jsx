@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { fetchSingleArticle } from "../utils";
 
 export const SingleArticle = () => {
@@ -25,7 +25,14 @@ export const SingleArticle = () => {
           <button>Down</button>
         </div>
         <div className="comment-section">
-          <p className="comments">Comments ({currentArticle.comment_count})</p>
+          <Link
+            to={`/articles/${currentArticle.article_id}/comments`}
+            state={currentArticle.title}
+          >
+            <p className="comments">
+              Comments ({currentArticle.comment_count})
+            </p>
+          </Link>
           <button className="add-comment-button">Add comment</button>
         </div>
       </div>

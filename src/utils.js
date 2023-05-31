@@ -15,3 +15,11 @@ export const fetchSingleArticle = (articleId) => {
     return article;
   });
 };
+
+export const fetchCommentsByArticle = (articleId) => {
+  return newsApi
+    .get(`/articles/${articleId}/comments`)
+    .then(({ data: { comments } }) => {
+      return comments;
+    });
+};
