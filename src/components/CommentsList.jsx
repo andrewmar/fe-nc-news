@@ -1,34 +1,48 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
 import { fetchCommentsByArticle } from "../utils";
 import { CommentCard } from "./CommentCard";
 import Spinner from "./Spinner";
 
-export const CommentsList = () => {
-  let { state: title } = useLocation();
+export const CommentsList = ({ article }) => {
+  const { article_id, comment_count } = article;
   const [commentsList, setCommentsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { article_id } = useParams();
+  const [showComments, setShowComments] = useState(false);
 
   useEffect(() => {
-    fetchCommentsByArticle(article_id).then((comments) => {
-      setCommentsList(comments);
-      setIsLoading(false);
-    });
-  }, [article_id]);
+    if (showComments) {
+      fetchCommentsByArticle(article_id).then((comments) => {
+        setCommentsList(comments);
+        setIsLoading(false);
+      });
+    }
+  }, [article_id, showComments]);
+
+  const toggleComments = () => {
+    setShowComments(!showComments);
+  };
+
   return (
     <section>
-      <h2>{title}</h2>
-      {isLoading && <Spinner />}
-      <ul className="comments-list">
-        {commentsList.map((comment) => {
-          return (
-            <li key={comment.comment_id}>
-              <CommentCard comment={comment} />
-            </li>
-          );
-        })}
-      </ul>
+      <button className="toggle-comments" onClick={toggleComments}>
+        {showComments ? "Hide Comments" : "Show Comments"}
+      </button>
+      {showComments && (
+        <div>
+          <p className="comments-count">Comments ({comment_count})</p>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <ul className="comments-list">
+              {commentsList.map((comment) => (
+                <li key={comment.comment_id}>
+                  <CommentCard comment={comment} />
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
     </section>
   );
 };
