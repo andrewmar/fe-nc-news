@@ -189,3 +189,7 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.error {
+  color: #ea5665;
+}

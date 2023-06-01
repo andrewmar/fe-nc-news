@@ -13,9 +13,7 @@ export const Nav = () => {
       <Link to="/topics" className="nav-link">
         Topics
       </Link>
-      <p className="user-info">
-        Logged in: {user.username ? user.username : "Guest"}
-      </p>
+      <p className="user-info">Logged in: {user.username}</p>
     </nav>
   );
 };
