@@ -13,7 +13,11 @@ import {
 } from "./components";
 
 function App() {
-  const [user, setUser] = useState({ username: "", name: "", avatar_url: "" });
+  const [user, setUser] = useState({
+    username: "Guest",
+    name: "",
+    avatar_url: "",
+  });
 
   return (
     <>
@@ -24,10 +28,6 @@ function App() {
           <Route path="/" element={<UserLogin />} />
           <Route path="/articles" element={<ArticlesList />} />
           <Route path="/articles/:article_id" element={<SingleArticle />} />
-          <Route
-            path="/articles/:article_id/comments"
-            element={<CommentsList />}
-          />
           <Route path="/topics" element={<TopicsList />} />
         </Routes>
       </UserContext.Provider>
