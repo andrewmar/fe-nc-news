@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { fetchSingleArticle } from "../utils";
+import { CommentsList } from "./CommentsList";
 
 export const SingleArticle = () => {
   const [currentArticle, setCurrentArticle] = useState({});
@@ -24,10 +25,9 @@ export const SingleArticle = () => {
           <p>{currentArticle.votes}</p>
           <button>Down</button>
         </div>
-        <div className="comment-section">
-          <p className="comments">Comments ({currentArticle.comment_count})</p>
-          <button className="add-comment-button">Add comment</button>
-        </div>
+        <section className="comment-section">
+          <CommentsList article={currentArticle} />
+        </section>
       </div>
     </section>
   );

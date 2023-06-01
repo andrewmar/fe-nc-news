@@ -9,7 +9,7 @@ export const ArticlesList = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchAllArticles().then(({ articles }) => {
+    fetchAllArticles().then((articles) => {
       setArticlesList(articles);
       setIsLoading(false);
     });

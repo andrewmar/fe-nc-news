@@ -5,8 +5,8 @@ const newsApi = axios.create({
 });
 
 export const fetchAllArticles = () => {
-  return newsApi.get("/articles").then((response) => {
-    return response.data;
+  return newsApi.get("/articles").then(({ data: { articles } }) => {
+    return articles;
   });
 };
 
@@ -14,4 +14,13 @@ export const fetchSingleArticle = (articleId) => {
   return newsApi.get(`/articles/${articleId}`).then(({ data: { article } }) => {
     return article;
   });
+};
+
+export const fetchCommentsByArticle = (articleId) => {
+  return newsApi
+    .get(`/articles/${articleId}/comments`)
+    .then(({ data: { comments } }) => {
+      console.log(comments);
+      return comments;
+    });
 };
