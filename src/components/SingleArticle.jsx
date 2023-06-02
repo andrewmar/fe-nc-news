@@ -62,7 +62,7 @@ export const SingleArticle = () => {
         </div>
         {isError && <p className="error"> Something went wrong, try again! </p>}
         <section className="comment-section">
-          <CommentsList article={currentArticle} />
+          <CommentsList article_id={article_id} />
         </section>
       </div>
     </section>

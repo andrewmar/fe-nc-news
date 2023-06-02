@@ -8,7 +8,6 @@ import {
   ArticlesList,
   Nav,
   SingleArticle,
-  CommentsList,
   TopicsList,
 } from "./components";
 

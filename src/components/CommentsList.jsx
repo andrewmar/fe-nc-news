@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { fetchCommentsByArticle } from "../utils";
 import { CommentCard } from "./CommentCard";
 import Spinner from "./Spinner";
+import { AddComment } from "./AddComment";
 
-export const CommentsList = ({ article }) => {
-  const { article_id, comment_count } = article;
+export const CommentsList = ({ article_id }) => {
   const [commentsList, setCommentsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showComments, setShowComments] = useState(false);
@@ -24,12 +24,14 @@ export const CommentsList = ({ article }) => {
 
   return (
     <section>
+      <section>
+        <AddComment article_id={article_id} setCommentsList={setCommentsList} />
+      </section>
       <button className="toggle-comments" onClick={toggleComments}>
         {showComments ? "Hide Comments" : "Show Comments"}
       </button>
       {showComments && (
         <div>
-          <p className="comments-count">Comments ({comment_count})</p>
           {isLoading ? (
             <Spinner />
           ) : (
