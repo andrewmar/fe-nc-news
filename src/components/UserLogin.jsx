@@ -18,12 +18,11 @@ export const UserLogin = () => {
           "https://vignette.wikia.nocookie.net/mrmen/images/7/78/Mr-Grumpy-3A.PNG/revision/latest?cb=20170707233013",
       };
     });
-    console.log(location);
 
     if (state) {
       navigate(state);
     } else {
-      navigate("/articles");
+      navigate("/articles", { state: "" });
     }
   };
   return (

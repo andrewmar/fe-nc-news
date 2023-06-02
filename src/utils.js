@@ -20,7 +20,6 @@ export const fetchCommentsByArticle = (articleId) => {
   return newsApi
     .get(`/articles/${articleId}/comments`)
     .then(({ data: { comments } }) => {
-      console.log(comments);
       return comments;
     });
 };
@@ -29,9 +28,13 @@ export const patchArticleVotes = (articleId, voteChange) => {
   const patchBody = {
     inc_votes: voteChange,
   };
+  return newsApi.patch(`/articles/${articleId}`, patchBody);
+};
+
+export const postNewComment = (articleId, commentBody) => {
   return newsApi
-    .patch(`/articles/${articleId}`, patchBody)
-    .then(({ data: { article } }) => {
-      return article;
+    .post(`/articles/${articleId}/comments`, commentBody)
+    .then(({ data: { comment } }) => {
+      return comment;
     });
 };
