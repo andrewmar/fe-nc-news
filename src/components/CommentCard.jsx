@@ -1,6 +1,7 @@
+import { dateFormatter } from "../utils";
+
 export const CommentCard = ({ comment }) => {
-  const date = new Date(comment.created_at);
-  const formattedDate = date.toLocaleString();
+  const formattedDate = dateFormatter(comment.created_at);
 
   return (
     <section className="comment-card">

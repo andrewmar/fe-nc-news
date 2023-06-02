@@ -44,3 +44,9 @@ export const fetchAllTopics = () => {
     return topics;
   });
 };
+
+export const dateFormatter = (date) => {
+  const newDate = new Date(date);
+  const formattedDate = newDate.toLocaleString();
+  return formattedDate;
+};
