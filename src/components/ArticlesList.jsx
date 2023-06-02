@@ -1,19 +1,25 @@
 import { useEffect, useState } from "react";
 import { fetchAllArticles } from "../utils";
-import { Link } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { ArticleCard } from "./ArticleCard";
 import Spinner from "./Spinner";
 
 export const ArticlesList = () => {
   const [articlesList, setArticlesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchParams] = useSearchParams();
+
+  let topic = searchParams.get("topic");
 
   useEffect(() => {
-    fetchAllArticles().then((articles) => {
+    const params = {
+      topic: topic || {},
+    };
+    fetchAllArticles(params).then((articles) => {
       setArticlesList(articles);
       setIsLoading(false);
     });
-  }, []);
+  }, [topic]);
 
   return (
     <div className="articles-list-container">
