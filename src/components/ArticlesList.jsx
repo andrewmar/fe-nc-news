@@ -8,22 +8,71 @@ export const ArticlesList = () => {
   const [articlesList, setArticlesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams] = useSearchParams();
-
-  let topic = searchParams.get("topic");
+  const [sortingOrder, setSortingOrder] = useState("desc");
+  const [sortBy, setSortBy] = useState("");
+  const topic = searchParams.get("topic");
 
   useEffect(() => {
     const params = {
-      topic: topic || {},
+      topic: topic || null,
+      sort_by: sortBy || null,
+      order: sortingOrder || null,
     };
-    fetchAllArticles(params).then((articles) => {
-      setArticlesList(articles);
-      setIsLoading(false);
-    });
-  }, [topic]);
+
+    fetchAllArticles(params)
+      .then((articles) => {
+        setArticlesList(articles);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching articles:", error);
+        setIsLoading(false);
+      });
+  }, [topic, sortBy, sortingOrder]);
+
+  const handleOrderChange = (event) => {
+    setSortingOrder(event.target.value);
+  };
 
   return (
     <div className="articles-list-container">
       <h2>All Articles:</h2>
+      <label htmlFor="sort-by">Sort by</label>
+      <select
+        name="sort-by"
+        id="sort-by"
+        defaultValue={"created_at"}
+        onChange={(event) => {
+          setSortBy(event.target.value);
+        }}
+      >
+        <option value="created_at">date</option>
+        <option value="comment_count">comments</option>
+        <option value="votes">votes</option>
+      </select>
+      <div>
+        <label>
+          <input
+            type="radio"
+            name="order"
+            value="asc"
+            checked={sortingOrder === "asc"}
+            onChange={handleOrderChange}
+          />
+          Ascending
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="order"
+            value="desc"
+            checked={sortingOrder === "desc"}
+            onChange={handleOrderChange}
+          />
+          Descending
+        </label>
+      </div>
+
       {isLoading && <Spinner />}
       <ul className="articles-list">
         {articlesList.map((article) => (
