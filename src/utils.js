@@ -4,8 +4,8 @@ const newsApi = axios.create({
   baseURL: "https://nc-news-erky.onrender.com/api",
 });
 
-export const fetchAllArticles = () => {
-  return newsApi.get("/articles").then(({ data: { articles } }) => {
+export const fetchAllArticles = (url) => {
+  return newsApi.get(url).then(({ data: { articles } }) => {
     return articles;
   });
 };
@@ -37,4 +37,10 @@ export const postNewComment = (articleId, commentBody) => {
     .then(({ data: { comment } }) => {
       return comment;
     });
+};
+
+export const fetchAllTopics = () => {
+  return newsApi.get("/topics").then(({ data: { topics } }) => {
+    return topics;
+  });
 };
