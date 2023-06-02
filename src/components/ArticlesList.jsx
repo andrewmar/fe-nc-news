@@ -14,20 +14,18 @@ export const ArticlesList = () => {
 
   useEffect(() => {
     const params = {
-      topic: topic || "",
       sort_by: sortBy || "created_at",
       order: sortingOrder || "desc",
     };
 
-    fetchAllArticles(params)
-      .then((articles) => {
-        setArticlesList(articles);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching articles:", error);
-        setIsLoading(false);
-      });
+    if (topic) {
+      params.topic = topic;
+    }
+
+    fetchAllArticles(params).then((articles) => {
+      setArticlesList(articles);
+      setIsLoading(false);
+    });
 
     setSearchParams(params);
   }, [topic, sortBy, sortingOrder]);
