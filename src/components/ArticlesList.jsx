@@ -12,11 +12,10 @@ export const ArticlesList = () => {
   let topic = searchParams.get("topic");
 
   useEffect(() => {
-    let url = "/articles";
-    if (topic) {
-      url += `?topic=${topic}`;
-    }
-    fetchAllArticles(url).then((articles) => {
+    const params = {
+      topic: topic || {},
+    };
+    fetchAllArticles(params).then((articles) => {
       setArticlesList(articles);
       setIsLoading(false);
     });
