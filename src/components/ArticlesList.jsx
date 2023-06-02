@@ -7,16 +7,16 @@ import Spinner from "./Spinner";
 export const ArticlesList = () => {
   const [articlesList, setArticlesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [sortingOrder, setSortingOrder] = useState("desc");
   const [sortBy, setSortBy] = useState("");
   const topic = searchParams.get("topic");
 
   useEffect(() => {
     const params = {
-      topic: topic || null,
-      sort_by: sortBy || null,
-      order: sortingOrder || null,
+      topic: topic || "",
+      sort_by: sortBy || "created_at",
+      order: sortingOrder || "desc",
     };
 
     fetchAllArticles(params)
@@ -28,6 +28,8 @@ export const ArticlesList = () => {
         console.error("Error fetching articles:", error);
         setIsLoading(false);
       });
+
+    setSearchParams(params);
   }, [topic, sortBy, sortingOrder]);
 
   const handleOrderChange = (event) => {
